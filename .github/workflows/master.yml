@@ -23,6 +23,9 @@ jobs:
           git config --local user.email "${GIT_USER_EMAIL}"
           git config --global user.email "${GIT_USER_EMAIL}"
           git config --global user.name "${GIT_USER_NAME}"
+          echo "El token es: ${GITHUB_TOKEN}"
+          echo "El usuario es: ${GIT_USER_NAME}"
+          echo "El email es: ${GIT_USER_EMAIL}"
           git config --global user.password "${GITHUB_TOKEN}"
           git push origin -d gh-pages
           git add dist -f
