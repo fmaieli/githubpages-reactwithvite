@@ -21,6 +21,9 @@ jobs:
         run: |
           git config --local user.name "${GIT_USER_NAME}"
           git config --local user.email "${GIT_USER_EMAIL}"
+          git config --global user.email "${GIT_USER_EMAIL}"
+          git config --global user.name "${GIT_USER_NAME}"
+          git config --global user.password "${GITHUB_TOKEN}"
           git push origin -d gh-pages
           git add dist -f
           git commit -m "deleted gh-pages branch by Github Actions"
