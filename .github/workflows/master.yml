@@ -19,6 +19,7 @@ jobs:
           GIT_USER_NAME: ${{ secrets.GIT_USER_NAME }}
           GIT_USER_EMAIL: ${{ secrets.GIT_USER_EMAIL }}
         run: |
+          set -x
           git config --local user.name "${GIT_USER_NAME}"
           git config --local user.email "${GIT_USER_EMAIL}"
           git config --global user.email "${GIT_USER_EMAIL}"
@@ -31,3 +32,4 @@ jobs:
           git add dist -f
           git commit -m "deleted gh-pages branch by Github Actions"
           git subtree push --prefix dist origin gh-pages
+          set +x
