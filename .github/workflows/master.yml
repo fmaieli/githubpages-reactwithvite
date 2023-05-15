@@ -6,13 +6,22 @@ on:
       - master
 
 jobs:
-  run-script:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Ejecutar Script
+      - name: Setup Git
+        env:
+          # Configura estas variables de entorno con los valores correspondientes
+          # de tus secretos de GitHub
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+          GIT_USER_NAME: ${{ secrets.GIT_USER_NAME }}
+          GIT_USER_EMAIL: ${{ secrets.GIT_USER_EMAIL }}
         run: |
-          chmod +x predeploy.sh
-          ./predeploy.sh
+          git config --local user.name "${GIT_USER_NAME}"
+          git config --local user.email "${GIT_USER_EMAIL}"
+      - name: Make predeploy.sh executable
+        run: chmod +x predeploy.sh
+      - name: Run predeploy.sh
+        run: ./predeploy.sh
