@@ -24,7 +24,12 @@ jobs:
           git config --global user.email "${GIT_USER_EMAIL}"
           git config --global user.name "${GIT_USER_NAME}"
           git config --global user.password "${GITHUB_TOKEN}"
-          git push origin -d gh-pages
-          git add dist -f
-          git commit -m "deleted gh-pages branch by Github Actions"
-          git subtree push --prefix dist origin gh-pages
+          git checkout master
+          git branch -D gh-pages
+          git push origin --delete gh-pages
+          git checkout -b gh-pages
+          git rm -r .
+          git clean -fxd
+          git add dist
+          git commit -m "Actualizar rama gh-pages con contenido de la carpeta dist con Github Actions"
+          git push origin gh-pages
