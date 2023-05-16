@@ -1,0 +1,26 @@
+name: Run Steps
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  step-1:
+    name: Delete gh-pages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run delete gh-pages step
+        uses: ./.github/workflows/delete-gh-pages.yml
+
+  step-2:
+    name: Create gh-pages with content from dist folder
+    needs: step-1
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run create gh-pages step
+        uses: ./.github/workflows/create-gh-pages.yml

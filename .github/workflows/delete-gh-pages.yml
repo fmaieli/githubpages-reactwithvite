@@ -1,0 +1,18 @@
+name: Delete gh-pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  delete-gh-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Delete gh-pages branch
+        run: |
+          git checkout master
+          git push origin --delete gh-pages
