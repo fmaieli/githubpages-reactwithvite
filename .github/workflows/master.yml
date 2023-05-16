@@ -10,7 +10,7 @@ jobs:
     name: Delete gh-pages
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Run delete gh-pages step
         uses: ./.github/workflows/delete-gh-pages.yml
@@ -20,7 +20,7 @@ jobs:
     needs: step-1
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Run create gh-pages step
         uses: ./.github/workflows/create-gh-pages.yml
